@@ -6,5 +6,3 @@ unzip awscliv2.zip
 ./aws/install --bin-dir /aws/bin/ --install-dir /aws/local/aws-cli/
 rm awscliv2.zip
 popd
-
-echo "PATH=${PATH}:/aws/bin" >> ${HOME}/.bashrc

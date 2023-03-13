@@ -3,4 +3,5 @@
 apt-get install -y \
   curl \
   wget \
-  unzip
+  unzip \
+  sudo

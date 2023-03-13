@@ -2,11 +2,13 @@
 
 set -e
 
-if [ ! -d "${HOME}/.aws/" ]; then
+if [ ! -d "${HOME}/.aws" ]; then
     echo "AWS Configuration is missing, running configure..."
-    docker run --rm -it -v ${HOME}/.awstmp/:/root/.aws/ aws-container /bin/bash -c "./bin/aws configure sso --profile SSO"
+    mkdir -p ${HOME}/.awstmp/
+    docker run --rm -it -v ${HOME}/.awstmp/:/aws/.aws/ --user "$(id -u):$(id -g)" aws-container /bin/bash -c "ls -la /aws && ./bin/aws configure sso && exit"
     echo "Configure? : $?"
-    mv ~/.awstmp/ ~/.aws/
+    mv ~/.awstmp ~/.aws
+    echo "Done, rebooting"
 fi
 
-docker run --rm -it --read-only ${HOME}/.aws/ aws-container /bin/bash
+docker run --rm -it -v ${HOME}/.aws/:/aws/.aws --user "$(id -u):$(id -g)" aws-container /bin/bash

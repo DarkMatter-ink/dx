@@ -1,12 +1,15 @@
-FROM public.ecr.aws/lts/ubuntu:22.04_stable
+#FROM public.ecr.aws/lts/ubuntu:22.04_stable
+FROM ubuntu:22.04
+
 WORKDIR /aws
 
 RUN apt update
 COPY scripts bin
-RUN ./bin/install-apt-dependencies.bash
-RUN /aws/bin/install-aws-cli.bash
+RUN bash -e     ./bin/install-apt-dependencies.bash
+RUN bash -e ./bin/install-aws-cli.bash
+RUN bash -ex ./bin/install-aws-cdk.bash
 
-RUN groupadd awsbox && useradd --no-log-init -d /aws -g awsbox -g sudo awsbox
+RUN groupadd awsbox && useradd --no-log-init -d /aws -g awsbox awsbox
 RUN chown awsbox /aws -R
 USER awsbox
 

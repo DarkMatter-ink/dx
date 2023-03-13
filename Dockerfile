@@ -5,9 +5,10 @@ WORKDIR /aws
 
 RUN apt update
 COPY scripts bin
-RUN bash -e     ./bin/install-apt-dependencies.bash
+RUN bash -e ./bin/install-apt-dependencies.bash
 RUN bash -e ./bin/install-aws-cli.bash
-RUN bash -ex ./bin/install-aws-cdk.bash
+RUN bash -e ./bin/install-aws-cdk.bash
+RUN bash -e ./bin/install-aws-sam.bash
 
 RUN groupadd awsbox && useradd --no-log-init -d /aws -g awsbox awsbox
 RUN chown awsbox /aws -R

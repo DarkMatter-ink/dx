@@ -1,5 +1,6 @@
 #FROM public.ecr.aws/lts/ubuntu:22.04_stable
 FROM ubuntu:22.04
+LABEL org.opencontainers.image.description AWS tools and customizations
 
 WORKDIR /aws
 

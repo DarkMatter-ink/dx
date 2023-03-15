@@ -1,6 +1,9 @@
 #FROM public.ecr.aws/lts/ubuntu:22.04_stable
 FROM ubuntu:22.04
-LABEL org.opencontainers.image.description AWS tools and customizations
+LABEL org.opencontainers.image.description="AWS tools and customizations"
+LABEL org.opencontainers.image.source=https://github.com/DarkMatter-Ink/aws-container-image
+LABEL org.opencontainers.image.licenses=Apache
+
 
 WORKDIR /aws
 

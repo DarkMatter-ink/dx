@@ -7,4 +7,5 @@ apt-get install -y \
   file \
   xz-utils \
   coreutils \
+  git \
   sudo

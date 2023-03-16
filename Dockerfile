@@ -4,19 +4,21 @@ LABEL org.opencontainers.image.description="AWS tools and customizations"
 LABEL org.opencontainers.image.source=https://github.com/DarkMatter-Ink/aws-container-image
 LABEL org.opencontainers.image.licenses=Apache
 
-WORKDIR /aws
+# Create the user we plan to "live" in
+RUN adduser awsbox --disabled-password
 
-RUN apt update
-COPY scripts bin
-RUN bash -e ./bin/install-apt-dependencies.bash
-RUN bash -e ./bin/install-aws-cli.bash
-RUN bash -e ./bin/install-aws-cdk.bash
-RUN bash -e ./bin/install-aws-sam.bash
+WORKDIR /home/awsbox/
 
-RUN groupadd awsbox && useradd --no-log-init -d /aws -g awsbox awsbox
-RUN chown awsbox /aws -R
+COPY scripts scripts
+RUN bash -e ./scripts/install-apt-dependencies.bash
+RUN bash -e ./scripts/prepare-user-home.bash /home/awsbox
+RUN bash -ex ./scripts/install-node.bash /home/awsbox
+RUN bash -e ./scripts/install-aws-cli.bash /home/awsbox
+RUN bash -e ./scripts/install-aws-cdk.bash /home/awsbox
+RUN bash -e ./scripts/install-aws-sam.bash /home/awsbox
+
+RUN chown awsbox: /home/awsbox -R
 USER awsbox
 
 #RUN ./bin/install-saml2aws.bash
 
-RUN echo "PATH=${PATH}:/aws/bin" >> ${HOME}/.bashrc

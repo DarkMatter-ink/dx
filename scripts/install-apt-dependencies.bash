@@ -1,8 +1,8 @@
 #!/bin/bash
 
-apt-get -q update
+apt-get -qq update
 
-apt-get -q install -y \
+apt-get -qq install -y \
   curl \
   wget \
   unzip \

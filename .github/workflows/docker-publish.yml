@@ -30,7 +30,7 @@ jobs:
         include:
           - dockerfile: ./Dockerfile
             image: ghcr.io/darkmatter-ink/aws-container-image
-          - dockerfile: ./src/Dockerfile.dev
+          - dockerfile: ./Dockerfile.dev
             image: ghcr.io/darkmatter-ink/dx-image
     permissions:
       contents: read

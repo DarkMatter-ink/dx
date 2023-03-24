@@ -1,0 +1,9 @@
+#FROM public.ecr.aws/lts/ubuntu:22.04_stable
+FROM ghcr.io/darkmatter-ink/aws-container-image:main
+LABEL org.opencontainers.image.description="Useful image for language and cloud development"
+LABEL org.opencontainers.image.source=https://github.com/DarkMatter-Ink/dev-image
+LABEL org.opencontainers.image.licenses=Apache
+
+COPY scripts scripts
+RUN bash -ex scripts/install-go.bash
+

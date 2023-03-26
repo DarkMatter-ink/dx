@@ -4,8 +4,8 @@ set -e
 
 IMAGE_TARGET=$(basename -s .bash ${BASH_ARGV0})
 case ${IMAGE_TARGET} in
-"dx-cli") CONTAINER="ghcr.io/darkmatter-ink/dx-container:latest";;
-"aws-cli") CONTAINER="ghcr.io/darkmatter-ink/aws-container:latest";;
+"dx-cli") CONTAINER="ghcr.io/darkmatter-ink/dx-image:latest";;
+"aws-cli") CONTAINER="ghcr.io/darkmatter-ink/aws-image:latest";;
 esac
 
 if [ ! -d "${HOME}/.aws" ]; then

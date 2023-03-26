@@ -1,7 +1,6 @@
-#FROM public.ecr.aws/lts/ubuntu:22.04_stable
-FROM ubuntu:22.04
+FROM public.ecr.aws/lts/ubuntu:22.04_stable
 LABEL org.opencontainers.image.description="AWS tools and customizations"
-LABEL org.opencontainers.image.source=https://github.com/DarkMatter-Ink/aws-container-image
+LABEL org.opencontainers.image.source=https://github.com/DarkMatter-Ink/dx/
 LABEL org.opencontainers.image.licenses=Apache
 
 # Create the user we plan to "live" in
